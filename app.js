@@ -125,7 +125,7 @@ intents.matches(/^Слава Украiне!/i, [
 
 ]);
 
-intents.matches(/^Привет, Фрэнк/, [
+intents.matches(/^Привет, Фрэнк/i, [
     function (session) {
         session.beginDialog('/hello');
     }
@@ -140,9 +140,16 @@ intents.matches(/^Привет/i, [
 ]);
 
 
-intents.matches(/^Фрэнк, как дела\?/i, [
+intents.matches(/^Фрэнк, как дела\?/, [
     function (session) {
          session.beginDialog('/howareyou');
+  }
+
+]);
+
+intents.matches(/^пизда/i, [
+    function (session) {
+         session.beginDialog('/pussy');
   }
 
 ]);
