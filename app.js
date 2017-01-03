@@ -132,7 +132,7 @@ intents.matches(/^Привет, Фрэнк/i, [
 
 ]);
 
-intents.matches(/^Привет/i, [
+intents.matches(/^Привет)/i, [
     function (session) {
         session.beginDialog('/hellosimple');
     }
@@ -147,7 +147,7 @@ intents.matches(/^Фрэнк, как дела\?/, [
 
 ]);
 
-intents.matches(/^пизда/i, [
+intents.matches(/^пизда)/i, [
     function (session) {
          session.beginDialog('/pussy');
   }
@@ -248,7 +248,6 @@ bot.dialog('/howareyou', [
 
 bot.dialog('/hellosimple', [
     function (session) {
-      var dateFormat = require('dateformat');
       session.send("Привет!");
       session.endDialog();
     }
