@@ -132,7 +132,7 @@ intents.matches(/^Привет, Фрэнк/i, [
 
 ]);
 
-intents.matches(/^Привет)/i, [
+intents.matches(/^привет бот/i, [
     function (session) {
         session.beginDialog('/hellosimple');
     }
@@ -147,7 +147,7 @@ intents.matches(/^Фрэнк, как дела\?/, [
 
 ]);
 
-intents.matches(/^пизда)/i, [
+intents.matches(/^хуй пизда/i, [
     function (session) {
          session.beginDialog('/pussy');
   }
