@@ -25,11 +25,22 @@ server.post('/api/messages', connector.listen());
 // Bots Dialogs
 //=========================================================
 
+
 bot.dialog('/', intents);
+
+
+intents.matches(/^список валют/i, [
+    function (session) {
+        session.beginDialog('/listcurrency');
+
+    }
+
+]);
+
 
 intents.matches(/^курс USD/i, [
     function (session) {
-        session.beginDialog('/profile');
+        session.beginDialog('/profileUSD');
 
     }
 
@@ -37,67 +48,168 @@ intents.matches(/^курс USD/i, [
 
 intents.matches(/^курс доллара/i, [
     function (session) {
-        session.beginDialog('/profile');
+        session.beginDialog('/profileUSD');
 
     }
 
 ]);
 intents.matches(/^курс бакса/i, [
     function (session) {
-        session.beginDialog('/profile');
+        session.beginDialog('/profileUSD');
 
     }
 
 ]);
 intents.matches(/^курс бакинского/i, [
     function (session) {
-        session.beginDialog('/profile');
+        session.beginDialog('/profileUSD');
+    }
+]);
+
+intents.matches(/^курс EUR/i, [
+    function (session) {
+        session.beginDialog('/profileEUR');
 
     }
 
 ]);
-intents.matches(/^привет/i, [
+
+intents.matches(/^курс евро/i, [
+    function (session) {
+        session.beginDialog('/profileEUR');
+
+    }
+
+]);
+intents.matches(/^курс еврика/i, [
+    function (session) {
+        session.beginDialog('/profileEUR');
+
+    }
+
+]);
+intents.matches(/^курс Евро/i, [
+    function (session) {
+        session.beginDialog('/profileEUR');
+    }
+]);
+
+intents.matches(/^курс UAH/i, [
+    function (session) {
+        session.beginDialog('/profileUAH');
+
+    }
+
+]);
+
+intents.matches(/^курс гривны/i, [
+    function (session) {
+        session.beginDialog('/profileUAH');
+
+    }
+
+]);
+
+intents.matches(/^курс Гривны/i, [
+    function (session) {
+        session.beginDialog('/profileUAH');
+
+    }
+
+]);
+intents.matches(/^Слава Ураiне!/i, [
+    function (session) {
+        session.beginDialog('/profileUAH');
+
+    }
+
+]);
+
+intents.matches(/^Привет, Фрэнк/, [
     function (session) {
         session.beginDialog('/hello');
-
     }
 
 ]);
 
-bot.dialog('/profile', [
+intents.matches(/^пизда/, [
+    function (session) {
+        session.send("Смотря в каком контексте здесь пизда :)");
+    }
+
+]);
+
+
+bot.dialog('/profileUSD', [
     function (session) {
         var request = require('request');
         var dateFormat = require('dateformat');
-        var date=dateFormat(new Date, "dd.mm.yyyy");
-        request.get('https://frankbotmind.herokuapp.com/exchange?name=USD&date='+date, function (error, response, body) {
+        var date = dateFormat(new Date, "dd.mm.yyyy");
+        request.get('https://frankbotmind.herokuapp.com/exchange?name=USD&date=' + date, function (error, response, body) {
             if (!error && response.statusCode == 200) {
                 phrase = JSON.parse(body);
                 console.log(phrase);
-                session.send(phrase.phrase[0]+phrase.phrase[1]);
-
-
+                session.send(phrase.phrase);
             }
         })
         session.endDialog();
     }
 ]);
 
+bot.dialog('/profileEUR', [
+    function (session) {
+        var request = require('request');
+        var dateFormat = require('dateformat');
+        var date = dateFormat(new Date, "dd.mm.yyyy");
+        request.get('https://frankbotmind.herokuapp.com/exchange?name=EUR&date=' + date, function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                phrase = JSON.parse(body);
+                console.log(phrase);
+                session.send(phrase.phrase);
+            }
+        })
+        session.endDialog();
+    }
+]);
+
+bot.dialog('/profileUAH', [
+    function (session) {
+        var request = require('request');
+        var dateFormat = require('dateformat');
+        var date = dateFormat(new Date, "dd.mm.yyyy");
+        request.get('https://frankbotmind.herokuapp.com/exchange?name=UAH&date=' + date, function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                phrase = JSON.parse(body);
+                console.log(phrase);
+                session.send(phrase.phrase);
+            }
+        })
+        session.endDialog();
+    }
+]);
+
+bot.dialog('/listcurrency', [
+    function (session) {
+        var request = require('request');
+        var dateFormat = require('dateformat');
+        var date = dateFormat(new Date, "dd.mm.yyyy");
+        request.get('https://frankbotmind.herokuapp.com/listcurrency', function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                phrase = JSON.parse(body);
+                console.log(phrase);
+            }
+        })
+        session.endDialog();
+    }
+]);
+
+
+
 bot.dialog('/hello', [
     function (session) {
-    //     var request = require('request');
-    //     var dateFormat = require('dateformat');
-    //     var date=dateFormat(new Date, "dd.mm.yyyy");
-    //     request.get('https://frankbotmind.herokuapp.com/exchange?name=USD&date='+date, function (error, response, body) {
-    //         if (!error && response.statusCode == 200) {
-    //             phrase = JSON.parse(body);
-    //             console.log(phrase);
-                session.send("Привет!");
-                session.send("Хотите узнать курс доллара? Просто наберите: \"курс доллара\"");
-        
+      session.send("Приветствую!!! Меня зовут Фрэнк Каупервуд. Я могу сказать Вам текущий курс Евро, Доллара, Гривны. Просто наберите: \"курс [валюта]\"");
+      
+    }
 
-
-        //     }
-        // })
-        session.endDialog();
-   }
+      
 ]);
