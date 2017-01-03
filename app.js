@@ -208,7 +208,7 @@ bot.dialog('/listcurrency', [
 bot.dialog('/hello', [
     function (session) {
       session.send("Приветствую!!! Меня зовут Фрэнк Каупервуд. Я могу сказать Вам текущий курс Евро, Доллара, Гривны. Просто наберите: \"курс [валюта]\"");
-      
+      session.endDialog();
     }
 
       
