@@ -117,7 +117,7 @@ intents.matches(/^курс Гривны/i, [
     }
 
 ]);
-intents.matches(/^Слава Ураiне!/i, [
+intents.matches(/^Слава Украiне!/i, [
     function (session) {
         session.beginDialog('/profileUAH');
 
@@ -132,13 +132,20 @@ intents.matches(/^Привет, Фрэнк/, [
 
 ]);
 
-intents.matches(/^пизда/, [
+intents.matches(/^Привет/i, [
     function (session) {
-        session.send("Смотря в каком контексте здесь пизда :)");
+        session.beginDialog('/hellosimple');
     }
 
 ]);
 
+
+intents.matches(/^Фрэнк, как дела\?/i, [
+    function (session) {
+         session.beginDialog('/howareyou');
+  }
+
+]);
 
 bot.dialog('/profileUSD', [
     function (session) {
@@ -208,6 +215,34 @@ bot.dialog('/listcurrency', [
 bot.dialog('/hello', [
     function (session) {
       session.send("Приветствую!!! Меня зовут Фрэнк Каупервуд. Я могу сказать Вам текущий курс Евро, Доллара, Гривны. Просто наберите: \"курс [валюта]\"");
+      session.endDialog();
+    }
+
+      
+]);
+
+bot.dialog('/pussy', [
+    function (session) {
+      session.send("Смотря в каком контексте здесь пизда :)");
+      session.endDialog();
+    }
+
+      
+]);
+
+bot.dialog('/howareyou', [
+    function (session) {
+      session.send("У меня хорошо, а ты работай, а не с ботом пизди!!!");
+      session.endDialog();
+    }
+
+      
+]);
+
+bot.dialog('/hellosimple', [
+    function (session) {
+      var dateFormat = require('dateformat');
+      session.send("Привет!");
       session.endDialog();
     }
 
