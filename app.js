@@ -151,7 +151,12 @@ intents.matches(/^хуй пизда/i, [
     function (session) {
          session.beginDialog('/pussy');
   }
+]);
 
+intents.matches(/^хуй/i, [
+    function (session) {
+         session.beginDialog('/pussy');
+  }
 ]);
 
 bot.dialog('/profileUSD', [
