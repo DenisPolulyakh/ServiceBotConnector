@@ -111,7 +111,7 @@ bot.dialog('/request', [
     function (session) {
         var request = require('request');
         var message = JSON.stringify({ text: encodeURIComponent(session.message.text) });
-        var address = 'https://cleverfrankbotmind.herokuapp.com/?message=' + message;
+        var address = 'https://cleverfrankbotmind.herokuapp.com/botmind?message=' + message;
         console.log(address);
         request.get(address, function (error, response, body) {
             if (!error && response.statusCode == 200) {
