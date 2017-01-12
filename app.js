@@ -107,17 +107,30 @@ function botAnswer(session, phrases) {
 }
 
 
+function cutString(strStart,strStop, text) {
+        var s=text.indexOf(strStart);
+        var e=text.indexOf(strStop)+strStop.length;
+        if(s==-1||e==-1) {return text;}
+        textId = text.substr(s,e);
+        console.log(textId);
+        text = text.replace(textId,'').trim();
+        return text;
+}
+
 bot.dialog('/request', [
     function (session) {
         var request = require('request');
-        console.log(session.message);
-        var message = JSON.stringify({ text: encodeURIComponent(session.message.text) });
-        var address = 'https://cleverfrankbotmind.herokuapp.com/botmind?message=' + message;
+        var text = session.message.text;
+        //text = " курс бакса <at id=\"28:63814cf6-5153-4de5-8d39-e51ccb5b8a3a\">@FrankCowperwood</at>"
+        text = cutString("<at id=","</at>",text);
+        console.log(text);
+        var messageToService = JSON.stringify({ text: text,timestamp:session.message.timestamp,address:session.message.address });
+        console.log(messageToService);
+        var address = 'https://cleverfrankbotmind.herokuapp.com/botmind?message=' + encodeURIComponent(messageToService);
         console.log(address);
         request.get(address, function (error, response, body) {
             if (!error && response.statusCode == 200) {
                 var phrases = getJSONProperty(body, 'phrase');
-                console.log("Phrases: " + phrases);
                 botAnswer(session, phrases);
             } else {
                 session.send("Простите, я не могу сейчас разговаривать");
