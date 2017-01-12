@@ -110,6 +110,7 @@ function botAnswer(session, phrases) {
 bot.dialog('/request', [
     function (session) {
         var request = require('request');
+        console.log(session.message);
         var message = JSON.stringify({ text: encodeURIComponent(session.message.text) });
         var address = 'https://cleverfrankbotmind.herokuapp.com/botmind?message=' + message;
         console.log(address);
