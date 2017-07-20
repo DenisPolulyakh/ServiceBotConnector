@@ -108,11 +108,11 @@ function botAnswer(session, phrases) {
 
 
 function cutString(strStart,strStop, text) {
-        var slash = text.indexOf("/");
+        var slash = text.indexOf('/');
         if(slash==0){
                      console.log(text);
                      console.log("telegramm message");
-                     text = text.substring(slash);
+                     text = text.substring(slash+1);
                      console.log(text);
         }
     
