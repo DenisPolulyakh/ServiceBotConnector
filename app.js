@@ -108,12 +108,16 @@ function botAnswer(session, phrases) {
 
 
 function cutString(strStart,strStop, text) {
+        var slash = text.indexOf("/");
+        text = text.substr(slash);
         var s=text.indexOf(strStart);
         var e=text.indexOf(strStop)+strStop.length;
         if(s==-1||e==-1) {return text;}
         textId = text.substr(s,e);
         console.log(textId);
         text = text.replace(textId,'').trim();
+        
+    
         return text;
 }
 
