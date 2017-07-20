@@ -112,14 +112,14 @@ function cutString(strStart,strStop, text) {
         if(slash==0){
                      console.log(text);
                      console.log("telegramm message");
-                     text = text.substr(slash);
+                     text = text.substring(slash);
                      console.log(text);
         }
     
         var s=text.indexOf(strStart);
         var e=text.indexOf(strStop)+strStop.length;
         if(s==-1||e==-1) {return text;}
-        textId = text.substr(s,e);
+        textId = text.substring(s,e);
         console.log(textId);
         text = text.replace(textId,'').trim();
         
