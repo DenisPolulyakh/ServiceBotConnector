@@ -144,7 +144,7 @@ bot.dialog('/request', [
                 var phrases = getJSONProperty(body, 'phrase');
                 botAnswer(session, phrases);
             } else {
-                session.send("Повторите еще раз пожалуйста");
+                session.send("Повторите еще раз пожалуйста через 1 минуту");
             }
         });
         session.endDialog();
