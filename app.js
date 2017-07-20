@@ -109,7 +109,13 @@ function botAnswer(session, phrases) {
 
 function cutString(strStart,strStop, text) {
         var slash = text.indexOf("/");
-        text = text.substr(slash);
+        if(slash==0){
+                     console.log(text);
+                     console.log("telegramm message");
+                     text = text.substr(slash);
+                     console.log(text);
+        }
+    
         var s=text.indexOf(strStart);
         var e=text.indexOf(strStop)+strStop.length;
         if(s==-1||e==-1) {return text;}
