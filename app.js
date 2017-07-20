@@ -144,7 +144,7 @@ bot.dialog('/request', [
                 var phrases = getJSONProperty(body, 'phrase');
                 botAnswer(session, phrases);
             } else {
-                session.send("Простите, я не могу сейчас разговаривать");
+                session.send("Повторите еще раз пожалуйста");
             }
         });
         session.endDialog();
