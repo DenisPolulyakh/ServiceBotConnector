@@ -98,14 +98,14 @@ function getJSONProperty(bodyJson, property) {
     }
 }
 
-function botAnswer(session, phrases) {
+function botAnswer(session, phrase) {
     console.log("Phrases: " + phrases);
-    for (i = 0; i < phrases.length; i++) {
-        var m = {"text":"Qwerty","timestamp":"2017-09-15T03:01:16.9633025Z","address":{"id":"16fa840be3ea4073a0a33651d2ad0c64|0000000","channelId":"webchat","user":{"id":"H5QnNQnETbb","name":"You"},"conversation":{"id":"16fa840be3ea4073a0a33651d2ad0c64"},"bot":{"id":"frankbotskype@9egOKufsX9g","name":"FrankCowperwood"},"serviceUrl":"https://webchat.botframework.com","useAuth":true}};
-        console.log("SEND "+phrases[i]);
-        session.send(phrases[i]);
-    }
-    return body.property;
+    //for (i = 0; i < phrases.length; i++) {
+   //     var m = {"text":"Qwerty","timestamp":"2017-09-15T03:01:16.9633025Z","address":{"id":"16fa840be3ea4073a0a33651d2ad0c64|0000000","channelId":"webchat","user":{"id":"H5QnNQnETbb","name":"You"},"conversation":{"id":"16fa840be3ea4073a0a33651d2ad0c64"},"bot":{"id":"frankbotskype@9egOKufsX9g","name":"FrankCowperwood"},"serviceUrl":"https://webchat.botframework.com","useAuth":true}};
+        console.log("SEND "+phrase);
+        session.send(phrase);
+  //  }
+  //  return body.property;
 }
 
 
